@@ -1,13 +1,16 @@
 ---
 title: "Zero‑Trust IoT lab at home (ESP32 + OpenWrt + mTLS + IDS + Honeypot)"
-date: 2025-09-01 23:45:00 +0100
+author: radouane
+date: 2025-09-01 00:15:00 +0100
 categories: [Cybersecurity, IoT, HomeLab]
 tags: [Zero-Trust, IoT-Security, ESP32, OpenWrt, Suricata, Cowrie, mTLS, MQTT, ThingsBoard, Raspberry-Pi, HomeLab]
-pin: true
 image:
-  path: assets/img/posts/2024/zero‑trust-iot/overall-architecture.png
+  path: /assets/img/posts/2024/zero‑trust-iot/overall-architecture.png
   alt: Zero‑Trust IoT lab diagram
 description: ESP32 talks MQTT over **mTLS** to the cloud, the IoT Wi‑Fi is **isolated** on its own VLAN, traffic is watched by **Suricata**, attackers are lured into a **Cowrie** honeypot, and I glued the logs into a tiny **Flask** dashboard. Total cost was lot of coffee + an intensive 3 weeks of troubleshooting + ~$150 in hardware.
+pin: false
+toc: true
+comments: true
 ---
 
 If you want the code/configs: **[GitHub → zero-trust-iot](https://github.com/RadouaneElhajali/Zero-Trust-IoT-lab-at-home)**. I’ll keep refining it as I go.
@@ -22,7 +25,7 @@ If you don't care about this blog and wants the offical report, here you go:
 I needed an end-of-studies project for my bacholers degree that wasn’t another “blink the LED project”. And as a human being that loves to envlove networking and security into all discussions. I ended up doing all this work for a bacholers project, which is overkill, I SAW THAT ON THE JURY FACE.
 
 ### 1. Network Segmentation (VLAN Isolation)
-![OpenWRT Network Segmentation](assets/img/posts/2024/zero‑trust-iot/network-segmentation.png)
+![OpenWRT Network Segmentation](/assets/img/posts/2024/zero‑trust-iot/network-segmentation.png)
 - **Default VLAN** (10.0.0.0/24): default LAN 
 - **IoT VLAN** (10.0.20.0/24): Complete isolation for IoT devices
 - **Firewall rules** preventing inter-VLAN communication
@@ -33,7 +36,7 @@ I bought a medium budget Xiaomi ax3000t router back then in 2023 from Aliexpreic
 I flashed it to the latest OpenWRT image 24.0.10. And it was stable and so much fun to work on compared to the out-of-box system. OpenWRT is one of my goes right now.
 
 ### 2. Certificate-Based Authentication (mTLS)
-![Certificate Authority](assets/img/posts/2024/zero‑trust-iot/openssl-certificate-authority.png)
+![Certificate Authority](/assets/img/posts/2024/zero‑trust-iot/openssl-certificate-authority.png)
 - **Private Certificate Authority** on Raspberry Pi
 - **X.509 certificates** for the ESP32 which plays as a gateway for all sensors
 - **Mutual TLS (mTLS)** authentication, therefore zero-trust 
@@ -48,8 +51,8 @@ Also managed (I SWEAR TO GOD THAN I SPEND 6 DAYS ONLY ON THIS) to upload the pri
 [Google Drive - Plugin](https://drive.google.com/file/d/1FM-YOp3lHuiTNMFVxaH0yytBs1oY81T0).
 
 ### 3. Real-Time Threat Monitoring
-![Suricata IDS](assets/img/posts/2024/zero‑trust-iot/suricata-ids.png)
-![Cowrie Honeypot](assets/img/posts/2024/zero‑trust-iot/cowrie-honeypot.png)
+![Suricata IDS](/assets/img/posts/2024/zero‑trust-iot/suricata-ids.png)
+![Cowrie Honeypot](/assets/img/posts/2024/zero‑trust-iot/cowrie-honeypot.png)
 
 - **Suricata IDS** analyzing all network traffic
 - **Cowrie honeypot** detecting unauthorized access attempts
@@ -59,7 +62,7 @@ Also managed (I SWEAR TO GOD THAN I SPEND 6 DAYS ONLY ON THIS) to upload the pri
 If i ask you which is better in a general terms, to block all SSH attempts or redirect them to a honeypot? You would ratlerly asnwer block them! I agree, but for some drama and practice reasons i implemented port forwarding in my OpenWRT router so it will redirect all SSH requests to my honeypot.
 
 ### 4. End-to-End Encryption
-![Suricata IDS](assets/img/posts/2024/zero‑trust-iot/mqtt-over-tls.png)
+![Suricata IDS](/assets/img/posts/2024/zero‑trust-iot/mqtt-over-tls.png)
 - **TLS 1.2** with strong cipher suites (AES-256-GCM)
 - **Perfect Forward Secrecy** protecting past communications
 - **Certificate validation** at every connection
@@ -391,7 +394,7 @@ The final, working code came from researching alternative MQTT libraries and fin
 
 With the final code, it all came together. The ESP32 connected, and another Wireshark capture showed the beautiful result.
 
-![Encrypted MQTTS Traffic in Wireshark](assets/img/posts/2024/zero‑trust-iot/mqtt-over-tls.png)
+![Encrypted MQTTS Traffic in Wireshark](/assets/img/posts/2024/zero‑trust-iot/mqtt-over-tls.png)
 *Success: The MQTT traffic is now unreadable, hidden inside a secure TLSv1.2 tunnel.*
 
 As you can see, Wireshark no longer identifies the protocol as "MQTT." It only sees **TLSv1.2**. The sensitive data is now hidden inside the **"Encrypted Application Data"** payload. This is the tangible proof of end-to-end encryption.
@@ -484,8 +487,8 @@ I'm Radouane ELHAJALI, i have a bachlores in IoT and network security. This proj
 Connect with me:
 - LinkedIn: https://www.linkedin.com/in/elhajali-radouane/
 - GitHub: https://github.com/RadouaneElhajali
-- Email: contact@radouane.me
-
+- Email: rdwnlocal@proton.me
 ---
+
 
 *Keywords: Zero Trust IoT, IoT security architecture, cybersecurity for IoT devices, MQTT security, TLS encryption, network segmentation, VLAN configuration, Suricata IDS, Cowrie honeypot, certificate authority, ESP32 security, Raspberry Pi security, mTLS authentication, IoT threat detection, enterprise IoT security*
