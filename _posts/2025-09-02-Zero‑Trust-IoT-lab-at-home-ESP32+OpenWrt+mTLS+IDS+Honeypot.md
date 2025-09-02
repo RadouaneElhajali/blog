@@ -7,7 +7,7 @@ tags: [Zero-Trust, IoT-Security, ESP32, OpenWrt, Suricata, Cowrie, mTLS, MQTT, T
 image:
   path: /assets/img/posts/2024/zero‑trust-iot/overall-architecture.png
   alt: Zero‑Trust IoT lab diagram
-description: ESP32 talks MQTT over **mTLS** to the cloud, the IoT Wi‑Fi is **isolated** on its own VLAN, traffic is watched by **Suricata**, attackers are lured into a **Cowrie** honeypot, and I glued the logs into a tiny **Flask** dashboard. Total cost was lot of coffee + an intensive 3 weeks of troubleshooting + ~$150 in hardware.
+description: ESP32 talks MQTT over mTLS to the cloud, the IoT Wi‑Fi is isolated on its own VLAN, traffic is watched by Suricata, attackers are lured into a Cowrie honeypot, and I glued the logs into a tiny Flask dashboard. Total cost was lot of coffee + an intensive 3 weeks of troubleshooting + ~$150 in hardware.
 pin: false
 toc: true
 comments: true
@@ -485,10 +485,10 @@ I believe in the power of open source and sharing knowledge. I've documented the
 I'm Radouane ELHAJALI, i have a bachlores in IoT and network security. This project was completed as part of my degree in IoT and Intelligent Systems.
 
 Connect with me:
-- LinkedIn: https://www.linkedin.com/in/elhajali-radouane/
-- GitHub: https://github.com/RadouaneElhajali
+- LinkedIn: (https://www.linkedin.com/in/elhajali-radouane/)
+- GitHub: (https://github.com/RadouaneElhajali)
 - Email: rdwnlocal@proton.me
----
 
+---
 
 *Keywords: Zero Trust IoT, IoT security architecture, cybersecurity for IoT devices, MQTT security, TLS encryption, network segmentation, VLAN configuration, Suricata IDS, Cowrie honeypot, certificate authority, ESP32 security, Raspberry Pi security, mTLS authentication, IoT threat detection, enterprise IoT security*
