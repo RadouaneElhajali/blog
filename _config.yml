@@ -62,7 +62,7 @@ analytics:
   google:
     id: G-6NMERGPTZT
   goatcounter:
-    id: radouane
+    id: #
   umami:
     id: # fill in your Umami ID
     domain: # fill in your Umami domain
@@ -76,7 +76,7 @@ analytics:
 
 # Page views settings
 pageviews:
-  provider: goatcounter
+  provider: #
 
 # Prefer color scheme setting.
 #
